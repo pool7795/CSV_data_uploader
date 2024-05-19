@@ -9,7 +9,7 @@ import dataRouter from "./routes/dataRoutes";
 dotenv.config();
 
 const app = express();
-const PORT = process.env["PORT"] || 3000;
+const PORT = 5500;
 
 app.use(express.json());
 
