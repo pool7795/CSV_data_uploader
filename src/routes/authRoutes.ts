@@ -1,10 +1,11 @@
+// src/routes/authRoutes.ts
 import express, { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { ApiError } from "../middleware/error";
-import { login, authenticateHandler } from "../middleware/authController";
+import { login } from "../middleware/authController";
 
 const router = express.Router();
-const jwtSecret = process.env["JWT_SECRET_KEY"] || "ultra-secret";
+const jwtSecret = process.env["JWT_SECRET_KEY"] || "ultra-secret"; // Se ajustó aquí
 
 router.post("/login", login);
 

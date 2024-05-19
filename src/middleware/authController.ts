@@ -12,7 +12,7 @@ declare global {
   }
 }
 
-const jwtSecret: string = process.env["JWT_SECRET_KEY"] || "ultra-secret";
+const jwtSecret: string = process.env["JWT_SECRET_KEY"] || "ultra-secret"; // Corregido aquí
 
 export async function authenticateHandler(
   req: Request,
@@ -46,7 +46,7 @@ export async function login(req: Request, res: Response) {
 
   try {
     const user = await pool.query(
-      "SELECT * FROM data WHERE email = $1 AND password = $2",
+      "SELECT * FROM users WHERE email = $1 AND password = $2",
       [email, password]
     );
 

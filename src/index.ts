@@ -2,8 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import { QueryResult } from "pg";
 import pool from "./config/db.config";
-import csvRoutes from "./routes/csvRoutes"; // Importa el archivo de rutas CSV
-import { login } from "./middleware/authController";
+import authRoutes from "./routes/authRoutes"; // Agregamos las rutas de autenticación
+import csvRoutes from "./routes/csvRoutes";
 import dataRouter from "./routes/dataRoutes";
 
 dotenv.config();
@@ -21,10 +21,8 @@ pool.query("SELECT NOW()", (err: Error, res: QueryResult<any>) => {
   }
 });
 
-// Authentication endpoint
-app.post("/login", login);
-
-// Usar rutas CSV
+// Usar rutas de autenticación, CSV y de datos
+app.use("/api/auth", authRoutes);
 app.use("/api/csv", csvRoutes);
 app.use("/api/data", dataRouter);
 

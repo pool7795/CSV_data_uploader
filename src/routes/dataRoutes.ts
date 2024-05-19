@@ -1,15 +1,15 @@
 import { Router } from "express";
 import {
-  createData,
-  updateData,
-  deleteData,
+  createUser,
+  updateUser,
+  deleteUser,
 } from "../controllers/dataController";
 import { dataValidationRules } from "../middleware/dataValidators";
 
 const dataRouter = Router();
 
-dataRouter.post("/create", dataValidationRules, createData);
-dataRouter.put("/:id", dataValidationRules, updateData);
-dataRouter.delete("/:id", deleteData);
+dataRouter.post("/", dataValidationRules, createUser);
+dataRouter.put("/:id", dataValidationRules, updateUser);
+dataRouter.delete("/:id", deleteUser);
 
 export default dataRouter;
