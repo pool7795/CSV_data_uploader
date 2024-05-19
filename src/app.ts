@@ -5,11 +5,15 @@ import swaggerSpec from "./config/swagger";
 import csvRoutes from "./routes/csvRoutes";
 import authRoutes from "./routes/authRoutes";
 import dataRouter from "./routes/dataRoutes";
+import cors from "cors"; // Importa el módulo de CORS
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Middleware de CORS
+app.use(cors());
 
 // Swagger setup
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
