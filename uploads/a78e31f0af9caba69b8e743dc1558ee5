@@ -1,0 +1,7 @@
+name,email,age,role,password
+John Doe,johndoe@example.com,30,,password123
+Jane Smith,janesmith@example.com,25,,password456
+Alice Johnson,alicej@example.com,28,,password789
+Bob Brown,bobbrown@example.com,32,,password123
+Charlie Black,charlieb@example.com,22,,password456
+Dana White,dana.white@example.com,29,,password789

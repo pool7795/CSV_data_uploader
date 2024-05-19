@@ -1,11 +1,8 @@
-import express, { Router } from "express";
-import multer from "multer";
+import express from "express";
 import { uploadCsv } from "../controllers/csvController";
-import { authenticateHandler } from "../middleware/authController";
 
-const router: Router = express.Router();
-const upload = multer({ dest: "uploads/" }); // Selecciona el directorio de destino para los archivos
+const router = express.Router();
 
-router.post("/upload", authenticateHandler, upload.single("file"), uploadCsv);
+router.post("/upload", uploadCsv);
 
 export default router;
