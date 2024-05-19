@@ -1,5 +1,3 @@
-// src/app.ts
-
 import express from "express";
 import bodyParser from "body-parser";
 import swaggerUi from "swagger-ui-express";
@@ -19,5 +17,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/csv", csvRoutes);
+app.use("/api/data", dataRouter);
 
 export default app;
