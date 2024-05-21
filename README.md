@@ -4,7 +4,7 @@ Este proyecto es una API REST que permite a los usuarios autenticados, específi
 
 - **API LINK:** https://csv-data-uploader.onrender.com
 - **CREAR USUARIO:** https://csv-data-uploader.onrender.com/api/data
-- **lOGIN DE USUARIO:** https://csv-data-uploader.onrender.com/api/auth/login
+- **LOGIN DE USUARIO:** https://csv-data-uploader.onrender.com/api/auth/login
 - **CARGA DE ARCHIVO CSV:** https://csv-data-uploader.onrender.com/api/csv/upload
 
 ## Tabla de Contenidos
@@ -165,53 +165,9 @@ La aplicación sigue una arquitectura modular organizada de la siguiente manera:
 
 **Solicitud:**
 
-````json
+```json
 {
   "email": "admin@example.com",
   "password": "admin123"
 }
-
-**Respuesta:**
-
-```json
-{
-  "ok": true,
-  "token": "eyJhbGciOiJIUzI1NiIsInR5..."
-}
-
-### Carga de Datos
-
-#### POST /api/csv/upload
-- **Descripción**: Permite la carga de archivos CSV para la creación de registros en la base de datos.
-- **Headers**: `Authorization: Bearer <token>`
-- **Body**: Archivo CSV con los campos name, email, age, role, password.
-- **Respuesta**:
-
-```json
-{
-  "ok": true,
-  "data": {
-    "success": [
-      {
-        "id": 1,
-        "name": "Juan Perez",
-        "email": "juan.perez@example.com",
-        "age": 28,
-        "role": "user",
-        "password": "hashed_password"
-      }
-    ],
-    "errors": [
-      {
-        "row": 4,
-        "details": {
-          "name": "El campo 'name' no puede estar vacío.",
-          "email": "El formato del campo 'email' es inválido.",
-          "age": "El campo 'age' debe ser un número positivo.",
-          "password": "El campo 'password' no puede estar vacío."
-        }
-      }
-    ]
-  }
-}
-````
+```
