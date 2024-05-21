@@ -1,43 +1,43 @@
 # csv_data_uploader
 
-Este proyecto es una API REST que permite a los usuarios autenticados, específicamente con rol de admin, cargar archivos CSV para la creación de registros en una base de datos PostgreSQL. La aplicación valida los datos del archivo CSV, permite la corrección de registros inválidos y asegura que solo usuarios autorizados realicen la carga de datos.
+This project is a REST API that allows authenticated users, specifically those with the admin role, to upload CSV files for creating records in a PostgreSQL database. The application validates the data in the CSV file, allows correction of invalid records, and ensures that only authorized users can upload data.
 
 - **API LINK:** https://csv-data-uploader.onrender.com
-- **CREAR USUARIO:** https://csv-data-uploader.onrender.com/api/data
-- **LOGIN DE USUARIO:** https://csv-data-uploader.onrender.com/api/auth/login
-- **CARGA DE ARCHIVO CSV:** https://csv-data-uploader.onrender.com/api/csv/upload
+- **CREATE USER:** https://csv-data-uploader.onrender.com/api/data
+- **USER LOGIN:** https://csv-data-uploader.onrender.com/api/auth/login
+- **CSV FILE UPLOAD:** https://csv-data-uploader.onrender.com/api/csv/upload
 
-## Tabla de Contenidos
+## Table of Contents
 
-1. [Requerimientos](#Requerimientos)
-2. [Instalación](#Instalación)
-3. [Configuración](#Configuración)
-4. [Estructura del Proyecto](#Estructura-del-Proyecto)
+1. [Requirements](#Requirements)
+2. [Installation](#Installation)
+3. [Configuration](#Configuration)
+4. [Project Structure](#Project-Structure)
 5. [Endpoints](#Endpoints)
-6. [Ejemplos-de-Solicitudes](#Ejemplos-de-Solicitudes)
+6. [Request Examples](#Request-Examples)
 
-## Requerimientos
+## Requirements
 
--Necesitas tener Node.js, npm, y PostgreSQL instalados en tu entorno de desarrollo.
+-You need to have Node.js, npm, and PostgreSQL installed in your development environment.
 
-## Instalación
+## Installation
 
-1. Clona este repositorio::
+1. Clone this repository:
 
 ```bash
 git@github.com:pool7795/csv_data_uploader.git
 cd csv_data_uploader
 ```
 
-2. Instala las dependencias:
+2. Install the dependencies:
 
 ```bash
 npm install
 ```
 
-3. Configura la conexión a la base de datos en el archivo .env, un ejemplo se proporciona en el archivo ".env.example"".
+3. Configure the database connection in the .env file, an example is provided in the ".env.example" file.
 
-4. Migra la base de datos:
+4. Migrate the database:
 
 ```bash
 npm run db:create
@@ -45,15 +45,15 @@ npm run db:migrate up
 npm run db:seed
 ```
 
-5. Inicia el servidor:
+5. Start the server:
 
 ```bash
 npm run dev
 ```
 
-## Configuración
+## Configuration
 
-Crea un archivo ".env" en la raíz del proyecto y configura las siguientes variables de entorno. Un archivo .env.example se proporciona como plantilla:
+Create a ".env" file in the root of the project and configure the following environment variables. An .env.example file is provided as a template:
 
 ```plaintext
 # Configuración de la base de datos PostgreSQL
@@ -67,41 +67,41 @@ PGPORT=5432
 JWT_SECRET_KEY=secreto_jwt
 ```
 
-## Estructura del Proyecto
+## Project Structure
 
-La aplicación sigue una arquitectura modular organizada de la siguiente manera:
+The application follows a modular architecture organized as follows:
 
-- **src/config:** Configuraciones del proyecto.
+- **src/config:** Project configurations.
 
   - `db.config.ts`: Configuración de la base de datos PostgreSQL.
   - `multer.config.ts`: Configuración de multer para la carga de archivos.
   - `swagger.ts`: Configuración de Swagger para la documentación de la API.
 
-- **src/controllers:** Controladores para manejar las solicitudes.
+- **src/controllers:** Controllers to handle requests.
 
   - `csvController.ts`: Controlador para manejar la carga y procesamiento de archivos CSV.
   - `dataController.ts`: Controlador para operaciones CRUD de usuarios.
   - `uploadController.ts`: Controlador para manejar la carga de archivos.
 
-- **src/middleware:** Middleware para la autenticación y otras funcionalidades.
+- **src/middleware:** Middleware for authentication and other functionalities.
 
   - `authController.ts`: Middleware y controlador de autenticación.
   - `dataValidators.ts`: Reglas de validación para datos de usuario.
   - `error.ts`: Clase para manejar errores de la API.
 
-- **src/models:** Definición de los modelos de datos.
+- **src/models:** Data model definitions.
 
   - `user.model.ts`: Modelo de usuario y validación.
 
-- **src/routes:** Definición de las rutas de la API.
+- **src/routes:** API route definitions.
 
   - `authRoutes.ts`: Rutas para autenticación.
   - `csvRoutes.ts`: Rutas para carga de archivos CSV.
   - `dataRoutes.ts`: Rutas para operaciones CRUD de usuarios.
   - `uploadRoutes.ts`: Rutas para carga de archivos.
 
-- **src/app.ts:** Configuración y creación de la aplicación Express.
-- **src/index.ts:** Punto de entrada principal de la aplicación.
+- **src/app.ts:** Express application configuration and creation.
+- **src/index.ts:** Main entry point of the application.
 
 ## Endpoints
 
@@ -109,61 +109,61 @@ La aplicación sigue una arquitectura modular organizada de la siguiente manera:
 
 #### POST /api/auth/login
 
-- **Descripción**: Autentica usuarios y devuelve un token JWT.
+- **Descripción**: Authenticates users and returns a JWT token.
 - **Body**: `email`, `password`
-- **Respuesta**:
-  - `200 OK`: Devuelve un token JWT.
-  - `401 Unauthorized`: Credenciales incorrectas.
+- **Response**:
+  - `200 OK`: Returns a JWT token.
+  - `401 Unauthorized`: Incorrect credentials.
 
-### Carga de Datos
+### Data Upload
 
 #### POST /api/csv/upload
 
-- **Descripción**: Permite la carga de archivos CSV para la creación de registros en la base de datos.
+- **Description**: Allows the upload of CSV files for creating records in the database.
 - **Headers**: `Authorization: Bearer <token>`
-- **Body**: Archivo CSV
-- **Respuesta**:
-  - `200 OK`: Detalle de los registros exitosos y errores específicos por registro y campo.
-  - `400 Bad Request`: Archivo CSV inválido o errores de validación.
-  - `401 Unauthorized`: Si el usuario no está autenticado o no tiene el rol `admin`.
+- **Body**: CSV file
+- **Response**:
+  - `200 OK`: Details of successful records and specific errors per record and field.
+  - `400 Bad Request`: Invalid CSV file or validation errors.
+  - `401 Unauthorized`: If the user is not authenticated or does not have the `admin` role.
 
-### Operaciones CRUD de Usuarios
+### User CRUD Operations
 
 #### POST /api/data
 
-- **Descripción**: Crea un nuevo usuario.
+- **Description**: Creates a new user.
 - **Headers**: `Authorization: Bearer <token>`
 - **Body**: `name`, `email`, `age`, `role`, `password`
-- **Respuesta**:
+- **Response**:
   - `201 Created`: Usuario creado exitosamente.
   - `400 Bad Request`: Errores de validación.
   - `401 Unauthorized`: Si el usuario no está autenticado.
 
 #### PUT /api/data/:id
 
-- **Descripción**: Actualiza un usuario existente.
+- **Description**: Actualiza un usuario existente.
 - **Headers**: `Authorization: Bearer <token>`
 - **Body**: `name`, `email`, `age`, `role`
-- **Respuesta**:
+- **Response**:
   - `200 OK`: Usuario actualizado exitosamente.
   - `400 Bad Request`: Errores de validación.
   - `401 Unauthorized`: Si el usuario no está autenticado.
 
 #### DELETE /api/data/:id
 
-- **Descripción**: Elimina un usuario.
+- **Description**: Deletes a user.
 - **Headers**: `Authorization: Bearer <token>`
-- **Respuesta**:
+- **Response**:
   - `200 OK`: Usuario eliminado exitosamente.
   - `401 Unauthorized`: Si el usuario no está autenticado.
 
-## Ejemplos de Solicitudes
+## Request Examples
 
-### Autenticación
+### Authentication
 
 #### POST /api/auth/login
 
-**Solicitud:**
+**Request:**
 
 ```json
 {
@@ -172,7 +172,7 @@ La aplicación sigue una arquitectura modular organizada de la siguiente manera:
 }
 ```
 
-**Respuesta:**
+**Response:**
 
 ```json
 {
@@ -181,7 +181,7 @@ La aplicación sigue una arquitectura modular organizada de la siguiente manera:
 }
 ```
 
-### Cargar Datos
+### Data Upload
 
 #### POST /api/csv/upload
 
@@ -195,7 +195,7 @@ Authorization: Bearer <token>
 
 - Archivo CSV con los campos name, email, age, role, password.
 
-**Respuesta:**
+**Response:**
 
 ```json
 {
