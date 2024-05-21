@@ -171,3 +171,57 @@ La aplicación sigue una arquitectura modular organizada de la siguiente manera:
   "password": "admin123"
 }
 ```
+
+**Respuesta:**
+
+```json
+{
+  "ok": true,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5..."
+}
+```
+
+### Cargar Datos
+
+#### POST /api/csv/upload
+
+**Headers:**
+
+```makefile
+Authorization: Bearer <token>
+```
+
+**Body:**
+
+- Archivo CSV con los campos name, email, age, role, password.
+
+**Respuesta:**
+
+```json
+{
+  "ok": true,
+  "data": {
+    "success": [
+      {
+        "id": 1,
+        "name": "Juan Perez",
+        "email": "juan.perez@example.com",
+        "age": 28,
+        "role": "user",
+        "password": "hashed_password"
+      }
+    ],
+    "errors": [
+      {
+        "row": 4,
+        "details": {
+          "name": "El campo 'name' no puede estar vacío.",
+          "email": "El formato del campo 'email' es inválido.",
+          "age": "El campo 'age' debe ser un número positivo.",
+          "password": "El campo 'password' no puede estar vacío."
+        }
+      }
+    ]
+  }
+}
+```
