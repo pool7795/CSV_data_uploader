@@ -2,10 +2,10 @@
 
 Este proyecto es una API REST que permite a los usuarios autenticados, específicamente con rol de admin, cargar archivos CSV para la creación de registros en una base de datos PostgreSQL. La aplicación valida los datos del archivo CSV, permite la corrección de registros inválidos y asegura que solo usuarios autorizados realicen la carga de datos.
 
-*API LINK: https://csv-data-uploader.onrender.com
-*CREAR USUARIO: https://csv-data-uploader.onrender.com/api/data
-*lOGIN DE USUARIO: https://csv-data-uploader.onrender.com/api/auth/login
-*CARGA DE ARCHIVO CSV: https://csv-data-uploader.onrender.com/api/csv/upload
+- **API LINK:** https://csv-data-uploader.onrender.com
+- **CREAR USUARIO:** https://csv-data-uploader.onrender.com/api/data
+- **lOGIN DE USUARIO:** https://csv-data-uploader.onrender.com/api/auth/login
+- **CARGA DE ARCHIVO CSV:** https://csv-data-uploader.onrender.com/api/csv/upload
 
 ## Tabla de Contenidos
 
